@@ -1,8 +1,8 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
 
-TOKEN = "8612859173:AAFGuAXaoDt9J---j0-UV0XiknkS7qvxvWs"
-
+import os
+TOKEN = os.environ.get("TOKEN")
 user_state = {}
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
