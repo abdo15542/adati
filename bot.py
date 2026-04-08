@@ -218,8 +218,13 @@ async def send_reminder(context, chat_id, text):
     await context.bot.send_message(chat_id=chat_id, text=f"⏰ *تذكيرك اليومي:*\n\n{text}", parse_mode="Markdown")
 
 # ========== تشغيل البوت ==========
-app = ApplicationBuilder().token(TOKEN).build()
-scheduler.start()
+async def post_init(application):
+    scheduler.start()
+
+app = (ApplicationBuilder()
+    .token(TOKEN)
+    .post_init(post_init)
+    .build())
 
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CallbackQueryHandler(button))
